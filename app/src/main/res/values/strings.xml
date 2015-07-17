@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Second Blood</string>
+    <string name="title_activity_display_message">My Message</string>
+
+    <string name="edit_message">Enter a Message</string>
+    <string name="edit_scale">Size of Font</string>
+    <string name="edit_scale_default">10</string>
+    <string name="button_send">Send</string>
+    <string name="action_search">Search</string>
+    <string name="action_settings">Settings</string>
+</resources>
