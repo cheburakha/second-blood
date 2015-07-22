@@ -15,6 +15,9 @@ public class MainActivity extends AppCompatActivity {
     public final static String EXTRA_MESSAGE = "com.cheburakha.secondblood.MESSAGE";
     public final static String EXTRA_SCALE = "com.mycompany.myfirstapp.SCALE";
 
+    //static final String STATE_SCORE = "playerScore";
+    //static final String STATE_LEVEL = "playerLevel";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,6 +26,25 @@ public class MainActivity extends AppCompatActivity {
         //EditText editText = (EditText) findViewById(R.id.edit_scale);
         //editText.setText("10");
     }
+
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+        // Save the user's current game state
+        //savedInstanceState.putInt(STATE_SCORE, mCurrentScore);
+        //savedInstanceState.putInt(STATE_LEVEL, mCurrentLevel);
+
+        // Always call the superclass so it can save the view hierarchy state
+        super.onSaveInstanceState(savedInstanceState);
+    }
+
+    //public void onRestoreInstanceState(Bundle savedInstanceState) {
+        // Always call the superclass so it can restore the view hierarchy
+        //super.onRestoreInstanceState(savedInstanceState);
+
+        // Restore state members from saved instance
+        //mCurrentScore = savedInstanceState.getInt(STATE_SCORE);
+        //mCurrentLevel = savedInstanceState.getInt(STATE_LEVEL);
+    //}
 
     /*
     private void setUpActionBar() {
