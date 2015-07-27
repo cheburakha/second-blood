@@ -5,28 +5,21 @@
     android:orientation="horizontal"
     android:gravity="center" >
     <!-- android:paddingTop="?attr/actionBarSize" -->
-    <EditText android:id="@+id/edit_scale"
-        android:layout_weight="1"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:hint="@string/edit_scale"
-        android:inputType="number"
-        android:text="@string/edit_scale_default"/>
-
-    <ImageView android:id="@+id/tardarSauce"
-        android:src="@drawable/cat"
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content" />
-
     <EditText android:id="@+id/edit_message"
         android:layout_weight="1"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:hint="@string/edit_message" />
-
+    <EditText android:id="@+id/edit_scale"
+        android:layout_weight="1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="@string/edit_scale"
+        android:inputType="number" />
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/button_send"
-        android:onClick="sendMessage" />
+        android:onClick="sendMessage" /> />
+
 </LinearLayout>

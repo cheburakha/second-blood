@@ -4,17 +4,21 @@ package com.cheburakha.secondblood;
 import android.content.Intent;
 //import android.os.Build;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+//import android.support.v7.app.AppCompatActivity;
+//import android.app.Activity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.support.v4.app.FragmentActivity;
+import android.content.SharedPreferences;
 
-public class MainActivity extends AppCompatActivity {
+
+public class MainActivity extends FragmentActivity {
     public final static String EXTRA_MESSAGE = "com.cheburakha.secondblood.MESSAGE";
     public final static String EXTRA_SCALE = "com.mycompany.myfirstapp.SCALE";
-
+    public final static String PREFS_NAME = "MyPrefsFile";
     //static final String STATE_SCORE = "playerScore";
     //static final String STATE_LEVEL = "playerLevel";
 
@@ -23,8 +27,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //EditText editText = (EditText) findViewById(R.id.edit_scale);
-        //editText.setText("10");
+        // Restore preferences
+        SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
+        String defFont = settings.getString("fontSize", "10");
+
+        EditText editText = (EditText) findViewById(R.id.edit_scale);
+        editText.setText(defFont);
     }
 
     @Override
@@ -37,16 +45,16 @@ public class MainActivity extends AppCompatActivity {
         super.onSaveInstanceState(savedInstanceState);
     }
 
-    //public void onRestoreInstanceState(Bundle savedInstanceState) {
+/*
+    public void onRestoreInstanceState(Bundle savedInstanceState) {
         // Always call the superclass so it can restore the view hierarchy
-        //super.onRestoreInstanceState(savedInstanceState);
+        super.onRestoreInstanceState(savedInstanceState);
 
         // Restore state members from saved instance
-        //mCurrentScore = savedInstanceState.getInt(STATE_SCORE);
-        //mCurrentLevel = savedInstanceState.getInt(STATE_LEVEL);
-    //}
+        mCurrentScore = savedInstanceState.getInt(STATE_SCORE);
+        mCurrentLevel = savedInstanceState.getInt(STATE_LEVEL);
+    }
 
-    /*
     private void setUpActionBar() {
         // Make sure we're running on Honeycomb or higher to use ActionBar APIs
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
@@ -54,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
     }
-    */
+*/
 
     /** Called when the user clicks the Send button */
     public void sendMessage(View view) {
@@ -72,6 +80,7 @@ public class MainActivity extends AppCompatActivity {
 
         startActivity(intent);
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -97,4 +106,21 @@ public class MainActivity extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
+
+    @Override
+    protected void onStop(){
+        super.onStop();
+
+        // We need an Editor object to make preference changes.
+        // All objects are from android.context.Context
+        SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
+        SharedPreferences.Editor editor = settings.edit();
+
+        EditText editText = (EditText) findViewById(R.id.edit_scale);
+
+        editor.putString("fontSize", editText.getText().toString());
+        // Commit the edits!
+        editor.commit();
+    }
+    //end of MainActivity class
 }
